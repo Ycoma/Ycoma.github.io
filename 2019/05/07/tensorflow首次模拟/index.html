@@ -79,13 +79,21 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="A.I.C.O">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="@TOC 学习tensorflow的提前准备在学习使用tensorflow之前磕了半天的神经网络基础，然后开始首次实践手写板功能 tensorflow的安装在cmd 中 用python语言安装即可1pip install tensorflow 注：tensorflow的运行前提是numpy库的存在，记得更新numpy库我们可以尝试运行一下eg：12345&amp;gt;&amp;gt;&amp;gt;import ten">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tensorflow首次模拟">
+<meta property="og:url" content="http://yoursite.com/2019/05/07/tensorflow首次模拟/index.html">
 <meta property="og:site_name" content="A.I.C.O">
+<meta property="og:description" content="@TOC 学习tensorflow的提前准备在学习使用tensorflow之前磕了半天的神经网络基础，然后开始首次实践手写板功能 tensorflow的安装在cmd 中 用python语言安装即可1pip install tensorflow 注：tensorflow的运行前提是numpy库的存在，记得更新numpy库我们可以尝试运行一下eg：12345&amp;gt;&amp;gt;&amp;gt;import ten">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/05/07/tensorflow首次模拟/$O(NN8ET(S]%60%7B2P5XZ3~N$V.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/05/07/tensorflow首次模拟/DZDUY%60_@AGI@]5GZ(%@AQD0.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/05/07/tensorflow首次模拟/20190419214313883.jpg">
+<meta property="og:updated_time" content="2019-05-09T05:03:16.061Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="A.I.C.O">
+<meta name="twitter:title" content="tensorflow首次模拟">
+<meta name="twitter:description" content="@TOC 学习tensorflow的提前准备在学习使用tensorflow之前磕了半天的神经网络基础，然后开始首次实践手写板功能 tensorflow的安装在cmd 中 用python语言安装即可1pip install tensorflow 注：tensorflow的运行前提是numpy库的存在，记得更新numpy库我们可以尝试运行一下eg：12345&amp;gt;&amp;gt;&amp;gt;import ten">
+<meta name="twitter:image" content="http://yoursite.com/2019/05/07/tensorflow首次模拟/$O(NN8ET(S]%60%7B2P5XZ3~N$V.jpg">
 
 
 
@@ -115,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2019/05/07/tensorflow首次模拟/">
 
 
 
 
 
-  <title>A.I.C.O</title>
+  <title>tensorflow首次模拟 | A.I.C.O</title>
   
 
 
@@ -140,8 +148,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -214,9 +221,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -246,9 +253,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/07/tensorflow首次模拟/" itemprop="url">tensorflow首次模拟</a></h1>
+          <h1 class="post-title" itemprop="name headline">tensorflow首次模拟</h1>
         
 
         <div class="post-meta">
@@ -298,9 +303,7 @@
       
 
       
-        
-          
-            <p>@<a href="TENSORFLOW首次实践">TOC</a></p>
+        <p>@<a href="TENSORFLOW首次实践">TOC</a></p>
 <h1 id="学习tensorflow的提前准备"><a href="#学习tensorflow的提前准备" class="headerlink" title="学习tensorflow的提前准备"></a>学习tensorflow的提前准备</h1><p>在学习使用tensorflow之前磕了半天的神经网络基础，然后开始首次实践手写板功能</p>
 <h2 id="tensorflow的安装"><a href="#tensorflow的安装" class="headerlink" title="tensorflow的安装"></a>tensorflow的安装</h2><p>在cmd 中 用python语言安装即可<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install tensorflow</span><br></pre></td></tr></table></figure></p>
 <p>注：tensorflow的运行前提是numpy库的存在，记得更新numpy库<br>我们可以尝试运行一下<br>eg：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;<span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line">&gt;&gt;&gt;hello = tf.constant(<span class="string">'hello,tensorflow'</span>)</span><br><span class="line">&gt;&gt;&gt;sess = tf.Session()</span><br><span class="line">&gt;&gt;&gt;print(sess.run(hello))</span><br><span class="line">hello,tensorflow</span><br></pre></td></tr></table></figure></p>
@@ -336,8 +339,6 @@
 </ul>
 <p>修改manager.py 文件<br><img src="/2019/05/07/tensorflow首次模拟/$O(NN8ET(S]`{2P5XZ3~N$V.jpg" alt><br>按如下方式修改：<br><img src="/2019/05/07/tensorflow首次模拟/DZDUY`_@AGI@]5GZ(%@AQD0.jpg" alt><br>完成后执行，成功，破费！<br>输入<a href="http://localhost:6006" target="_blank" rel="noopener">http://localhost:6006</a>即可查看训练中的各种指标数据。在训练过程中的变化情况<br><img src="/2019/05/07/tensorflow首次模拟/20190419214313883.jpg" alt></p>
 
-          
-        
       
     </div>
     
@@ -354,12 +355,12 @@
       
 
       
+      
+      
 
       
 
       
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -369,10 +370,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -380,6 +382,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -400,8 +406,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -443,6 +458,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#学习tensorflow的提前准备"><span class="nav-number">1.</span> <span class="nav-text">学习tensorflow的提前准备</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#tensorflow的安装"><span class="nav-number">1.1.</span> <span class="nav-text">tensorflow的安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tensorboard"><span class="nav-number">1.2.</span> <span class="nav-text">tensorboard</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MNIST数据集下载"><span class="nav-number">1.3.</span> <span class="nav-text">MNIST数据集下载</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用tensorflow完成实验"><span class="nav-number">2.</span> <span class="nav-text">使用tensorflow完成实验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一个错误：Tensorflow-tensorflow-python-framework-errors-impl-NotFoundError-Failed-to-create-a-directory-tmp-tensorflow"><span class="nav-number">2.1.</span> <span class="nav-text">第一个错误：Tensorflow-tensorflow.python.framework.errors_impl.NotFoundError: Failed to create a directory: /tmp\tensorflow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二个错误：Tensorflow-lt-urlopen-error-WinError-10060"><span class="nav-number">2.2.</span> <span class="nav-text">第二个错误：Tensorflow-&lt;urlopen error [WinError 10060]</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#将训练完毕后的情况用tensorboard展现出来"><span class="nav-number">3.</span> <span class="nav-text">将训练完毕后的情况用tensorboard展现出来</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#tensorboard-报错OSError-Errno-22-Invalid-argument"><span class="nav-number">3.1.</span> <span class="nav-text">tensorboard 报错OSError: [Errno 22] Invalid argument</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -576,6 +607,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
