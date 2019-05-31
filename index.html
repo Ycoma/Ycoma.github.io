@@ -229,6 +229,156 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/31/循环神经网络（RNN）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="目录">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="A.I.C.O">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/31/循环神经网络（RNN）/" itemprop="url">循环神经网络（RNN）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-31T21:21:09+08:00">
+                2019-05-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="循环神经网络（RNN）"><a href="#循环神经网络（RNN）" class="headerlink" title="循环神经网络（RNN）"></a>循环神经网络（RNN）</h1><p>在了解隐马尔可夫模型（HMM）之后，我们发现，通过统计的方法可以去观察和认识一个事件序列上临近事件发生的概率转化问题。在RNN模型中是允许模型在训练中取学期前后之间的转化影响的，只不过就是在RNN模型中你无法得到那种标准的HMM模型训练中得到的清晰的转化矩阵</p>
+<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><p>传统的RNN从外形上来看就是这样一个结构。 下面这个 Vector 是输入向量，我们称之为 X，右侧的Y是输出向量，在使用 的过程中和以前我们看过的卷积网络去做图片分类一样一一卷积网络中的图片分类在训练的过程中实际上是把所有的样本和标签一对 一对放入网络，图片在“入口”，分类标签在“出口”，用样本图片产生的拟合值与“出口”标签的差来定义残差，然后一步一步去挪动网络中的各种权重 w, 使得残差向着减小的方向前进。 在RNN中的计算方式没有什么大的差别，向量 X，放在人 口的位置，待输出的内容放在 Y的位置。 中间单元（就是图中无字的白方框）中的待定权重 一旦设定，就一定会产生一个残差。<br><img src="/2019/05/31/循环神经网络（RNN）/./1559305821069.png" alt="Alt text"><br>这里有两个待定系数 一个是$W_x$， 一个是 $W_h$，其中$W_x$会与$W_t$向量做乘积，作为输入的一部分，那么另一部分呢，是由前一次输出的 $H_{t-1}$， 和 $W_H$相乘得到。 等于说前一次计算输 出的 $H_t-1$， 需要缓存一下，在本次$X_.t$; 输入的时候参与运算，共同输出最后的$Y$。 而 $Y$也是一个向量，它是由前面输入的 $H_t-1$和$W_H$相乘所产生的向量$W_x$和$X_t$相乘所产生的向量加和后做 <strong>SOFTMAX</strong> 得到的。 <strong>SOFTMAX</strong> 我们是知道的，输出的是一个多维向量，不论有多少个分量，其加和都是 1 ，每个向量的分量维度是一个小于 1 的值，而这个值是可以做概率解释的。</p>
+<h2 id="训练过程"><a href="#训练过程" class="headerlink" title="训练过程"></a>训练过程</h2><p>最简单的RNN模型在工作的时候是可以以一个单元工作的，从时间维度上做一个展开可以像下面这样画：<br><img src="/2019/05/31/循环神经网络（RNN）/./1559306712483.png" alt="Alt text"><br>在这个训练过程中，文字是无法直接扔进去的，都会通过一个“word to vector”的功能模块将文字转化为数字向量。</p>
+<p>当$W_x$和$W_H$这两个矩阵被初始化之后，一定是在Y侧有输出的，所以一定会有残差产生。设每个样本产生的残差为$E_i$在一次完整的训练中，整个网络的残差就是从第一次扔进去对话的第一句和第二句的时候产生的$E_1$。然后加上第二句和第三句产生的$E_2$。。。所以可以简写成：</p>
+<blockquote>
+<p>$Loss =  \sum_{i = 1}^{n-1}E_i$</p>
+</blockquote>
+<p>但是整个误差并没有这么简单。</p>
+<h2 id="误差传递"><a href="#误差传递" class="headerlink" title="误差传递"></a>误差传递</h2><p>假定整个网络确实有那么一个状态，此时使得$W_x$和$W_H$的值能够满足残差总和最小的 情况。 那么在我初始化$W_x$和 $W_H$的时候我仍然需要把这两个矩阵中的各维度分量值向着减 小残差的方向去移动，方向是好确定的一一我们说过，最土的方法可以向正方向挪动一个 很小的值，然后向负方向挪动一个很小的值，比较一下哪一种产生的残差和更小。 而我们前面多次见过的用链式法则求导的过程，目的是为了确定挪多少量更合适，没错吧？ 在当前这个网络模型中 $W_x$和 $W_H$都是我们最终要学习的内容，其实残差总和$Loss$应该 来自于两个部分： 一部分是由于 $W_x$和理想的 $W_x$的状态的差距造成的，而另一部分是 $W_H$和理想的 $W_H$的状态差距造成的。 现在就是要求出关于这两个向量的导数一一一也就是斜率的 表达式来确定每次移动多少。 </p>
+<p>对于整个网络的误差两部分来源，我们写成这样：</p>
+<blockquote>
+<p>$Loss =  aE_x + bE_H$</p>
+</blockquote>
+<p>其中$E_x$表示由$W_x$引起的误差，$E_H$表示由$W_H$引起的误差，a和b 分别表示由样本产生的系数。所以我们展开一下：</p>
+<blockquote>
+<p>$H_T = W_Hf ( H_{t-1}  ) + W_xX_t$<br>$Y_t = SOFTMAX(f(H_t))$</p>
+</blockquote>
+<p>$SOFTMAX$函数：</p>
+<blockquote>
+<p>$D = MAX(V)$<br>$S_i = \frac{e^{V_i-D}}{\sum_{i}^{c}e^{V_i-D}}$</p>
+</blockquote>
+<p>如果只有一对输入$X_t$和$Y_t$，也就是$X_1$和$Y_1$，那么这个时候残差是什么？</p>
+<blockquote>
+<p>$H_{1}^{o} = W_Hf()+W_xX_1$<br>$E_1 = \frac{1}{2}(SOFTMAX(f(H_{1}^{0}))-Y_1)^2$</p>
+</blockquote>
+<p>也就是</p>
+<blockquote>
+<p>$E_1 = \frac{1}{2}(W_S(f(H_{1}^{0}))-Y_1)^2$</p>
+</blockquote>
+<p>$W_s$是指$SOFTMAX$中的$W_s$矩阵</p>
+<p>后面就不管了，总之，当训练过程中有成千上万个向量放入网络后，要计算这么多向量产生误差的导数大小，基本上不太现实。不仅是时间复杂度的问题，还有可能引发梯度消失或者梯度爆炸的问题<br>因此，传统的RNN虽然在理论上行得通，但是在训练中效果十分不理想，所以我们用一种叫做LSTM的算法代替BPTT算法来实现RNN的训练方式</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/28/隐马尔可夫模型/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -873,7 +1023,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
